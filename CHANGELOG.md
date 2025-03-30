@@ -22,7 +22,6 @@
 
 <details>
 
--   [`7018b9f`](https://github.com/stdlib-js/stdlib/commit/7018b9f18a5bd95edf2deb1db33ca68c9075d421) - **refactor:** update paths _(by Aayush Khanna)_
 -   [`f1cdd58`](https://github.com/stdlib-js/stdlib/commit/f1cdd5853df8ccf7d2478af1b1f9b3ed11f04fb1) - **feat:** add `stats/strided/dmskmax` _(by Aayush Khanna)_
 
 </details>
