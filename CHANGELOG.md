@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-01-10)
+## Unreleased (2026-01-12)
 
 <section class="features">
 
@@ -22,6 +22,8 @@
 
 <details>
 
+-   [`18f7a74`](https://github.com/stdlib-js/stdlib/commit/18f7a74934a8c1d64798818b20e03c353f4db981) - **test:** fix supplied arguments in fifth argument tests _(by Philipp Burckhardt)_
+-   [`2035f34`](https://github.com/stdlib-js/stdlib/commit/2035f344a1a469278042b7532f034dc6119933b3) - **docs:** add function documentation _(by Athan Reines)_
 -   [`411353c`](https://github.com/stdlib-js/stdlib/commit/411353c97c756168a89eff9f5252ee32048819de) - **bench:** refactor to use dynamic memory allocation in `stats/strided/dmskmax` [(#9650)](https://github.com/stdlib-js/stdlib/pull/9650) _(by Vishal Gaikwad, Athan Reines)_
 -   [`60c82d7`](https://github.com/stdlib-js/stdlib/commit/60c82d7956372df2c50a05cab73205aa85198aa5) - **docs:** fix example code _(by Philipp Burckhardt)_
 -   [`3dad15a`](https://github.com/stdlib-js/stdlib/commit/3dad15a335e8f20c1747ceacbefd6cecefce8c8d) - **refactor:** update paths _(by Gururaj Gurram)_
