@@ -41,43 +41,32 @@ limitations under the License.
 
 <!-- /.intro -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/stats-strided-dmskmax
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
-To use in Observable,
-
 ```javascript
-dmskmax = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dmskmax@umd/browser.js' )
-```
-The previous example will load the latest bundled code from the umd branch. Alternatively, you may load a specific version by loading the file from one of the [tagged bundles](https://github.com/stdlib-js/stats-strided-dmskmax/tags). For example,
-
-```javascript
-dmskmax = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dmskmax@v0.1.0-umd/browser.js' )
-```
-
-To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
-
-```javascript
-var dmskmax = require( 'path/to/vendor/umd/stats-strided-dmskmax/index.js' )
-```
-
-To include the bundle in a webpage,
-
-```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dmskmax@umd/browser.js"></script>
-```
-
-If no recognized module system is present, access bundle contents via the global scope:
-
-```html
-<script type="text/javascript">
-(function () {
-    window.dmskmax;
-})();
-</script>
+var dmskmax = require( '@stdlib/stats-strided-dmskmax' );
 ```
 
 #### dmskmax( N, x, strideX, mask, strideMask )
@@ -187,15 +176,10 @@ var v = dmskmax.ndarray( 4, x, 2, 1, mask, 2, 1 );
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-array-uniform@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-array-bernoulli@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dmskmax@umd/browser.js"></script>
-<script type="text/javascript">
-(function () {
+```javascript
+var uniform = require( '@stdlib/random-array-uniform' );
+var bernoulli = require( '@stdlib/random-array-bernoulli' );
+var dmskmax = require( '@stdlib/stats-strided-dmskmax' );
 
 var uniformOptions = {
     'dtype': 'float64'
@@ -211,11 +195,6 @@ console.log( mask );
 
 var v = dmskmax( x.length, x, 1, mask, 1 );
 console.log( v );
-
-})();
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -224,7 +203,138 @@ console.log( v );
 
 <!-- C interface documentation. -->
 
+* * *
 
+<section class="c">
+
+## C APIs
+
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+
+<section class="intro">
+
+</section>
+
+<!-- /.intro -->
+
+<!-- C usage documentation. -->
+
+<section class="usage">
+
+### Usage
+
+```c
+#include "stdlib/stats/strided/dmskmax.h"
+```
+
+#### stdlib_strided_dmskmax( N, \*X, strideX, \*Mask, strideMask )
+
+Computes the maximum value of a double-precision floating-point strided array according to a mask.
+
+```c
+#include <stdint.h>
+
+const double x[] = { 1.0, -2.0, 2.0 };
+const uint8_t mask[] = { 0, 1, 0 };
+
+double v = stdlib_strided_dmskmax( 3, x, 1, mask, 1 );
+// returns 2.0
+```
+
+The function accepts the following arguments:
+
+-   **N**: `[in] CBLAS_INT` number of indexed elements.
+-   **X**: `[in] double*` input array.
+-   **strideX**: `[in] CBLAS_INT` stride length for `X`.
+-   **Mask**: `[in] uint8_t*` mask array. If a `Mask` array element is `0`, the corresponding element in `X` is considered valid and included in computation. If a `Mask` array element is `1`, the corresponding element in `X` is considered invalid/missing and excluded from computation.
+-   **strideMask**: `[in] CBLAS_INT` stride length for `Mask`.
+
+```c
+double stdlib_strided_dmskmax( const CBLAS_INT N, const double *X, const CBLAS_INT strideX, const uint8_t *Mask, const CBLAS_INT strideMask );
+```
+
+<!-- lint disable maximum-heading-length -->
+
+#### stdlib_strided_dmskmax_ndarray( N, \*X, strideX, offsetX, \*Mask, strideMask, offsetMask )
+
+Computes the maximum value of a double-precision floating-point strided array according to a mask and using alternative indexing semantics.
+
+```c
+#include <stdint.h>
+
+const double x[] = { 1.0, -2.0, 2.0 };
+const uint8_t mask[] = { 0, 1, 0 };
+
+double v = stdlib_strided_dmskmax_ndarray( 3, x, 1, 0, mask, 1, 0 );
+// returns 2.0
+```
+
+The function accepts the following arguments:
+
+-   **N**: `[in] CBLAS_INT` number of indexed elements.
+-   **X**: `[in] double*` input array.
+-   **strideX**: `[in] CBLAS_INT` stride length for `X`.
+-   **offsetX**: `[in] CBLAS_INT` starting index for `X`.
+-   **Mask**: `[in] uint8_t*` mask array. If a `Mask` array element is `0`, the corresponding element in `X` is considered valid and included in computation. If a `Mask` array element is `1`, the corresponding element in `X` is considered invalid/missing and excluded from computation.
+-   **strideMask**: `[in] CBLAS_INT` stride length for `Mask`.
+-   **offsetMask**: `[in] CBLAS_INT` starting index for `Mask`.
+
+```c
+double stdlib_strided_dmskmax_ndarray( const CBLAS_INT N, const double *X, const CBLAS_INT strideX, const CBLAS_INT offsetX, const uint8_t *Mask, const CBLAS_INT strideMask, const CBLAS_INT offsetMask );
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+</section>
+
+<!-- /.notes -->
+
+<!-- C API usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```c
+#include "stdlib/stats/strided/dmskmax.h"
+#include <stdint.h>
+#include <stdio.h>
+
+int main( void ) {
+    // Create a strided array:
+    const double x[] = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 };
+
+    // Create a mask array:
+    const uint8_t mask[] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 };
+
+    // Specify the number of elements:
+    const int N = 5;
+
+    // Specify the stride lengths:
+    const int strideX = 2;
+    const int strideMask = 2;
+
+    // Compute the maximum value:
+    double v = stdlib_strided_dmskmax( N, x, strideX, mask, strideMask );
+
+    // Print the result:
+    printf( "max: %lf\n", v );
+}
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.c -->
 
 <!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
 
@@ -284,8 +394,8 @@ Copyright &copy; 2016-2026. The Stdlib [Authors][stdlib-authors].
 [npm-image]: http://img.shields.io/npm/v/@stdlib/stats-strided-dmskmax.svg
 [npm-url]: https://npmjs.org/package/@stdlib/stats-strided-dmskmax
 
-[test-image]: https://github.com/stdlib-js/stats-strided-dmskmax/actions/workflows/test.yml/badge.svg?branch=v0.1.0
-[test-url]: https://github.com/stdlib-js/stats-strided-dmskmax/actions/workflows/test.yml?query=branch:v0.1.0
+[test-image]: https://github.com/stdlib-js/stats-strided-dmskmax/actions/workflows/test.yml/badge.svg?branch=main
+[test-url]: https://github.com/stdlib-js/stats-strided-dmskmax/actions/workflows/test.yml?query=branch:main
 
 [coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/stats-strided-dmskmax/main.svg
 [coverage-url]: https://codecov.io/github/stdlib-js/stats-strided-dmskmax?branch=main
@@ -317,25 +427,25 @@ Copyright &copy; 2016-2026. The Stdlib [Authors][stdlib-authors].
 
 [stdlib-license]: https://raw.githubusercontent.com/stdlib-js/stats-strided-dmskmax/main/LICENSE
 
-[@stdlib/array/float64]: https://github.com/stdlib-js/array-float64/tree/umd
+[@stdlib/array/float64]: https://github.com/stdlib-js/array-float64
 
-[@stdlib/array/uint8]: https://github.com/stdlib-js/array-uint8/tree/umd
+[@stdlib/array/uint8]: https://github.com/stdlib-js/array-uint8
 
 [mdn-typed-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 
 <!-- <related-links> -->
 
-[@stdlib/stats/strided/dmax]: https://github.com/stdlib-js/stats-strided-dmax/tree/umd
+[@stdlib/stats/strided/dmax]: https://github.com/stdlib-js/stats-strided-dmax
 
-[@stdlib/stats/strided/dmskmin]: https://github.com/stdlib-js/stats-strided-dmskmin/tree/umd
+[@stdlib/stats/strided/dmskmin]: https://github.com/stdlib-js/stats-strided-dmskmin
 
-[@stdlib/stats/strided/dnanmax]: https://github.com/stdlib-js/stats-strided-dnanmax/tree/umd
+[@stdlib/stats/strided/dnanmax]: https://github.com/stdlib-js/stats-strided-dnanmax
 
-[@stdlib/stats/strided/dnanmskmax]: https://github.com/stdlib-js/stats-strided-dnanmskmax/tree/umd
+[@stdlib/stats/strided/dnanmskmax]: https://github.com/stdlib-js/stats-strided-dnanmskmax
 
-[@stdlib/stats/strided/mskmax]: https://github.com/stdlib-js/stats-strided-mskmax/tree/umd
+[@stdlib/stats/strided/mskmax]: https://github.com/stdlib-js/stats-strided-mskmax
 
-[@stdlib/stats/strided/smskmax]: https://github.com/stdlib-js/stats-strided-smskmax/tree/umd
+[@stdlib/stats/strided/smskmax]: https://github.com/stdlib-js/stats-strided-smskmax
 
 <!-- </related-links> -->
 
