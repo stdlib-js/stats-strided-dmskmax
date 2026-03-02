@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-02-28)
+## Unreleased (2026-03-02)
 
 <section class="commits">
 
@@ -12,6 +12,7 @@
 
 <details>
 
+-   [`27cf3ca`](https://github.com/stdlib-js/stdlib/commit/27cf3caea5ccce5f1af8a1ef06ede0f20f1b1abe) - **bench:** use string interpolation in `stats/strided/dmskmax` [(#10603)](https://github.com/stdlib-js/stdlib/pull/10603) _(by Om-A-osc)_
 -   [`177c9b9`](https://github.com/stdlib-js/stdlib/commit/177c9b9ef19cd92078c39b8f8aa0bd8364fb6ca3) - **docs:** fix notes _(by Athan Reines)_
 
 </details>
@@ -24,9 +25,10 @@
 
 ### Contributors
 
-A total of 1 person contributed to this release. Thank you to this contributor:
+A total of 2 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
+-   Om-A-osc
 
 </section>
 
